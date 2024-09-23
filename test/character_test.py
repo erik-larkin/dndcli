@@ -1,6 +1,6 @@
 import sys  
 sys.path.append("./")
-from dndcli.character import *
+from dnd.character import *
 
 def test_init() -> None:
 	sut = Ability(10)
