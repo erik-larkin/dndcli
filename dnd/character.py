@@ -1,4 +1,5 @@
 from enum import Enum
+from __future__ import annotations
 from bisect import bisect_right
 
 class Order(Enum):
@@ -77,6 +78,36 @@ class Alignment:
             return "Neutral"
         return f"{self.order.title()} {self.morality.title()}"
 
+class Money:
+    def __init__(self) -> None:
+        self.copper = 0
+        self.silver = 0
+        self.electrum = 0
+        self.gold = 0
+        self.platinum = 0
+    
+    @property
+    def gold_value(self) -> float:
+        return ((self.platinum * 10) + self.gold + (self.electrum / 2) +
+                (self.silver / 10) + (self.copper / 100))
+
+    def add(self, money: Money) -> None:
+        self.copper += money.copper
+        self.silver += money.silver
+        self.electrum += money.electrum
+        self.gold += money.gold
+        self.platinum += money.platinum
+
+    def remove(self, money: Money) -> None:
+        pass
+
+    def __str__(self) -> str:
+        return (
+            f"Total GP value: {self.gold_value}\n"
+            f"PP: {self.platinum}; GP: {self.gold}; EP: {self.electrum}; "
+            f"SP: {self.silver}; CP: {self.copper}"
+        )
+
 class Character:
     def __init__(self) -> None:
         self.name = None
@@ -104,6 +135,10 @@ class Character:
         self.max_max = 0
         self.current_hp = 0
         self.temp_hp = 0
+        self.hit_dice = None
+        
+        self.death_save_successes = 0
+        self.death_save_failures = 0
     
     @property
     def level(self) -> int:
