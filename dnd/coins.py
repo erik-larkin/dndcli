@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 CP_VALUE_IN_GP = 0.01
 
 PP_VALUE_IN_CP = 1000

@@ -19,6 +19,6 @@ class Alignment:
         self.order = order
     
     def __str__(self) -> str:
-        if self.morality == "neutral" and self.order == "neutral":
+        if self.morality == Morality.NEUTRAL and self.order == Order.NEUTRAL:
             return "Neutral"
         return f"{self.order.title()} {self.morality.title()}"
