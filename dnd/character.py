@@ -1,5 +1,14 @@
 from bisect import bisect_right
 from ability import Ability, Skill, SKILL_ABILITIES
+from enum import Enum
+
+class Size(Enum):
+	TINY = "tiny"
+	SMALL = "small"
+	MEDIUM = "medium"
+	LARGE = "large"
+	HUGE = "huge"
+	GARGANTUAN = "gargantuan"
 
 LEVEL_EXP_THRESHOLDS = [
     0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 
@@ -25,8 +34,11 @@ class Character:
         }
 
         self.inspiration = 0
-        self.skills = set()
-        self.saving_throws = set()
+        self.proficient_skills = set()
+        self.proficient_saving_throws = set()
+        self.proficient_tools = set()
+        self.languages = set()
+        self.traits = set()
         self.armor_class = 0
         self.speed = 0
         
